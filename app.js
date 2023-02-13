@@ -38,7 +38,7 @@ mongoose
   .connect(process.env.DB_URL)
   .then((result) => {
     // console.log(result);
-    app.listen(proces.env.PORT || port, () => {
+    app.listen(process.env.PORT || port, () => {
         console.log(`app listening on port ${port}`);
       });
       
