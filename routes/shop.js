@@ -10,7 +10,7 @@ const Order = require("../models/order")
 const pdf2base64 = require('pdf-to-base64');
 
 
-router.get("/list-products",verifyJWT, getProducts);
+router.get("/list-products", getProducts);
 
 router.get("/getProductById/:productId",verifyJWT, getProductById);
 
