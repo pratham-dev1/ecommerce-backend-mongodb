@@ -23,7 +23,7 @@ exports.getProducts = (req, res, next) => {
   }
 
   let pageNo = page - 1;
-  let limit = 3;
+  let limit = 5;
 
   Product.find(query)
     .sort(sorting)

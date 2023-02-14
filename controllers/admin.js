@@ -8,10 +8,7 @@ exports.addProduct = (req, res, next) => {
   if(req.fileValidationError) return res.send({error:true,message: req.fileValidationError})
   if(req.fileSizeError) return res.send({error:true,message: req.fileSizeError})
   const { name, price, size, description } = req.body;
-  const url = req.protocol + '://' + req.get('host')
-  const file = url + '/public/uploads/' + req.file.filename
-
-  const product = new Product({name,price,size,description,image : file,createdBy: { userId: req.user._id }});
+  const product = new Product({name,price,size,description,image : req.file.filename,createdBy: { userId: req.user._id }});
   product.save()
     .then((result) => {
       res.status(201).send({ message: "INSERTED" });
@@ -116,9 +113,7 @@ exports.updateProduct = (req, res, next) => {
       // product.description = description;
       // product.image = image;
       if(req.file){
-        const url = req.protocol + '://' + req.get('host')
-  const file = url + '/public/uploads/' + req.file.filename
-        product["image"] = file
+        product["image"] = req.file.filename
       }
       for (const key in fields) {
         product[key] = fields[key]; // partial update
