@@ -58,10 +58,12 @@ exports.addOrder = (req, res, next) => {
   let order = new Order({ products, totalPrice, user });
   order
     .save()
-    .then((result) => res.send(result))
+    .then((result) =>{
+      res.status(200).send(result)
+    } )
     .catch((err) => {
       console.log(err)
-      res.status(500).send(err);
+      res.status(501).send(err);
     })
 };
 
