@@ -63,7 +63,7 @@ exports.addOrder = (req, res, next) => {
     } )
     .catch((err) => {
       console.log(err)
-      res.status(501).send(err);
+      res.status(501).send(err)
     })
 };
 
