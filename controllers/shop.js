@@ -59,7 +59,10 @@ exports.addOrder = (req, res, next) => {
   order
     .save()
     .then((result) => res.send(result))
-    .catch((err) => resstatus(500).send(err));
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err);
+    })
 };
 
 exports.orderHistory = (req, res, next) => {
