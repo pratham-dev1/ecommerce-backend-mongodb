@@ -6,7 +6,7 @@ const generateAccessToken = ({ _id, name, email, image, address, pincode, role }
         let accessToken = jwt.sign(
             { _id, name, email, image, address, pincode, role },
             process.env.ACCESS_TOKEN_SECRET_KEY,
-            { expiresIn: '1h' }
+            { expiresIn: '20s' }
           )
           if(!accessToken) reject(new Error('no token generated'))
           
