@@ -9,7 +9,6 @@ const generateAccessToken = ({ _id, name, email, image, address, pincode, role }
             { expiresIn: '1h' }
           )
           if(!accessToken) reject(new Error('no token generated'))
-          
            return resolve(accessToken)
     })
 }
