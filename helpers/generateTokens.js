@@ -21,7 +21,7 @@ let newRefreshToken = await new Promise((resolve, reject) => { // first it wil w
     let refreshToken = jwt.sign( 
         { _id :_id },
         process.env.REFRESH_TOKEN_SECRET_KEY,
-        { expiresIn: '25s' }
+        { expiresIn: '28s' }
       )
         return resolve(refreshToken)      
     })
