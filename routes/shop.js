@@ -43,11 +43,11 @@ catch(err){
 }
   });
 
-  router.post('/fetch-invoice-pdf', (req, res) => {
+  router.post('/fetch-invoice-pdf', async(req, res) => {
     let {orderId} = req.body
-    pdf2base64(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`)).then((base64String)=>{
-      res.send(base64String)
-    })
+    let base64 = await pdf2base64(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))
+    console.log(base64)
+    res.send(base64)
     // res.sendFile(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))  // we can send direct blob
   });
 
