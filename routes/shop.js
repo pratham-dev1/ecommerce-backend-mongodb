@@ -47,6 +47,9 @@ catch(err){
     let {orderId} = req.params
     pdf2base64(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`)).then((base64String)=>{
       res.send(base64String)
+    }).catch((err)=>{
+      console.log(err)
+    res.status(501).send(err)
     })
     // res.sendFile(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))  // we can send direct blob
   });
