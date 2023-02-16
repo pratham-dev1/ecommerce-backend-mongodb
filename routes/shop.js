@@ -34,7 +34,7 @@ router.post("/create-invoice-pdf", async (req, res) => {
  pdf.create(pdfTemplate(order.user.name,orderDetails, order.totalPrice),{}).toFile(path.join(__dirname,'../','billing',`Invoice-${orderId}.pdf`),(err) =>{
   if(err) {
      console.log("my error",err);
-     return res.status(100).send({message:"error",error : err})
+     return res.send({message:"error",error : err})
 }
 console.log("xxxx-------------------no error")
 res.send(Promise.resolve())
