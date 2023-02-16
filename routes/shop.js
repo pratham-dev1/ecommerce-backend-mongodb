@@ -26,14 +26,14 @@ router.post("/create-invoice-pdf", async (req, res) => {
  try{
   let {orderId } = req.body
   let order = await Order.findById({_id:orderId})
-  console.log("isorder", order)
+  // console.log(order)
   let orderDetails = order.products.map((item)=>{
     return{productName : item.name,price:item.price,size:item.size ,quantity:item.quantity}
   })
 
 pdf.create(pdfTemplate(order.user.name,orderDetails, order.totalPrice),{}).toFile(`billing/Invoice-${orderId}.pdf`,(err) =>{
   if(err) {
-    console.log(err);
+    return console.log('error');
 }
 res.send(Promise.resolve())
 })
@@ -43,13 +43,10 @@ catch(err){
 }
   });
 
-  router.get('/fetch-invoice-pdf/:orderId', (req, res) => {
-    let {orderId} = req.params
+  router.post('/fetch-invoice-pdf', (req, res) => {
+    let {orderId} = req.body
     pdf2base64(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`)).then((base64String)=>{
       res.send(base64String)
-    }).catch((err)=>{
-      console.log(err)
-    res.status(501).send(err)
     })
     // res.sendFile(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))  // we can send direct blob
   });
