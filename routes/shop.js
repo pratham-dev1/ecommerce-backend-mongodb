@@ -26,14 +26,14 @@ router.post("/create-invoice-pdf", async (req, res) => {
  try{
   let {orderId } = req.body
   let order = await Order.findById({_id:orderId})
-  // console.log(order)
+  console.log("isorder",order)
   let orderDetails = order.products.map((item)=>{
     return{productName : item.name,price:item.price,size:item.size ,quantity:item.quantity}
   })
 
 pdf.create(pdfTemplate(order.user.name,orderDetails, order.totalPrice),{}).toFile(`billing/Invoice-${orderId}.pdf`,(err) =>{
   if(err) {
-    return console.log('error');
+    console.log(err);
 }
 res.send(Promise.resolve())
 })
