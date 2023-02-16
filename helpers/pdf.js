@@ -1,6 +1,7 @@
 
-module.exports = (name,orderDetails,totalPrice ) => {
+module.exports = (name,orderDetails,totalPrice,orderDate ) => {
     const today = new Date();
+    const date = new Date(orderDate)
 return `
     <!doctype html>
     <html>
@@ -90,7 +91,7 @@ return `
                             <td class="title"><img  src="https://i2.wp.com/cleverlogos.co/wp-content/uploads/2018/05/reciepthound_1.jpg?fit=800%2C600&ssl=1"
                                style="width:100%; max-width:156px;"></td>
                             <td>
-                               Datum: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                               Date of purchase: ${`${date.getDate()}. ${date.getMonth() + 1}. ${date.getFullYear()}.`}
                             </td>
                          </tr>
                       </table>

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
   products: { type: Array, required: true },
   totalPrice: { type: Number, required: true },
-
+  createdOn : {type : Date , required : true , default : new Date()},
   user: {
     name: {
       type: String,
