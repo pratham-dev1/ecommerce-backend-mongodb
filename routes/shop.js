@@ -36,6 +36,7 @@ pdf.create(pdfTemplate(order.user.name,orderDetails, order.totalPrice),{}).toFil
      console.log("my error",err);
      return res.status(100).send({message:"error",error : err})
 }
+console.log("xxxx-------------------no error")
 res.send(Promise.resolve())
 })
 }
