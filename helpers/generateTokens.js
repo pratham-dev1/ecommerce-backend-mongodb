@@ -6,7 +6,7 @@ const generateAccessToken = ({ _id, name, email, image, address, pincode, role }
         let accessToken = jwt.sign(
             { _id, name, email, image, address, pincode, role },
             process.env.ACCESS_TOKEN_SECRET_KEY,
-            { expiresIn: '1h' }
+            { expiresIn: '24h' }
           )
           if(!accessToken) reject(new Error('no token generated'))
            return resolve(accessToken)
@@ -20,7 +20,7 @@ let newRefreshToken = await new Promise((resolve, reject) => { // first it wil w
     let refreshToken = jwt.sign( 
         { _id :_id },
         process.env.REFRESH_TOKEN_SECRET_KEY,
-        { expiresIn: '2h' }
+        { expiresIn: '1y' }
       )
         return resolve(refreshToken)      
     })
