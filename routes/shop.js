@@ -31,7 +31,7 @@ router.post("/create-invoice-pdf", async (req, res) => {
     return{productName : item.name,price:item.price,size:item.size ,quantity:item.quantity}
   })
 
-pdf.create(pdfTemplate(order.user.name,orderDetails, order.totalPrice),{}).toFile(`billing/Invoice-${orderId}.pdf`,(err) =>{
+ pdf.create(pdfTemplate(order.user.name,orderDetails, order.totalPrice),{}).toFile(`billing/Invoice-${orderId}.pdf`,(err) =>{
   if(err) {
      console.log("my error",err);
      return res.status(100).send({message:"error",error : err})
@@ -45,12 +45,12 @@ catch(err){
 }
   });
 
-  router.post('/fetch-invoice-pdf', async(req, res) => {
-    let {orderId} = req.body
-    let base64 = await pdf2base64(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))
-    console.log(base64)
-    res.send(base64)
-    // res.sendFile(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))  // we can send direct blob
+  router.get('/fetch-invoice-pdf/:orderId', async(req, res) => {
+    let {orderId} = req.params
+    // let base64 = await pdf2base64(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))
+    // console.log(base64)
+    // res.send(base64)
+    res.sendFile(path.join(__dirname,'../' ,'billing',`Invoice-${orderId}.pdf`))  // we can send direct blob
   });
 
 module.exports = router;
